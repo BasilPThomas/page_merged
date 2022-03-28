@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_merged/screen/attendance.dart';
+import 'package:page_merged/screen/earnings.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'add_shop.dart';
-import 'merchant_leave_report.dart';
+import 'screen/add_shop.dart';
+import 'screen/merchant_leave_report.dart';
 
 class NavigationBarPage extends StatefulWidget {
   const NavigationBarPage({Key? key}) : super(key: key);
@@ -21,11 +23,11 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
   }
 
   List<Widget> _buildScreens() {
-    return [
-      const MerchantLeaveReport(),
-      const AddShop(),
-      const MerchantLeaveReport(),
-      const MerchantLeaveReport(),
+    return const [
+      MerchantLeaveReport(),
+      AddShop(),
+      Attendance(),
+      Earning()
     ];
   }
 
@@ -81,9 +83,13 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
               : kBottomNavigationBarHeight,
           popActionScreens: PopActionScreensType.all,
           bottomScreenMargin: 0.0,
-          decoration: NavBarDecoration(
+          decoration: const NavBarDecoration(
               colorBehindNavBar: Colors.indigo,
-              borderRadius: BorderRadius.circular(20.0)),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+          ),
           popAllScreensOnTapOfSelectedTab: true,
           itemAnimationProperties: const ItemAnimationProperties(
             duration: Duration(milliseconds: 400),
